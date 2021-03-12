@@ -1,39 +1,66 @@
-// Declarar una funcion constructora llamada Usuario
 
-function Usuario (nombre,apellido,libros,mascotas){
-    this.nombre = nombre
-    this.apellido = apellido
-    this.libros = libros
-    this.mascotas = mascotas
-}
+// --------------------------- FUNCION CONSTRUCTORA --------------------------- //
 
-const usuario = {
-    nombre:'Juan',
-    apellido:'perez',
-    libros:[{book:"Cien Años de Soledad", Autor: 'Gabriel Garcia Marquez'}],
-    mascotas:['perro']
-}
+ function UsuarioC (nombre,apellido,libros,mascotas){
+        this.nombre = nombre
+        this.apellido = apellido
+        this.libros = libros
+        this.mascotas = mascotas
+    }
+    UsuarioC.prototype.getFullName = function(){
+        return this.nombre +' '+this.apellido
+    }
+    
+    UsuarioC.prototype.getMascotas = function(){
+        return this.mascotas
+    }
+    UsuarioC.prototype.addMascota = function(mascota) {
+        this.mascotas.push(mascota)
+    }
+    UsuarioC.prototype.getBooks = function(){
+        return this.libros.map(i=>i.nombre)
+    }
+    UsuarioC.prototype.addBook = function(libro){
+        return this.libros.push(libro)
+    }
 
-let newUser = new Usuario(usuario.nombre,usuario.apellido,usuario.libros,usuario.mascotas)
 
-console.log(newUser.nombre + ' ' +newUser.apellido) //GetFullName
-newUser.mascotas = [...newUser.mascotas, 'perro'] // addMascota
-console.log(newUser.mascotas.length) // getMascotas
+let newU = new UsuarioC('alejandro','cabrejo',[{nombre: 'El señor de las moscas',autor: 'William Golding'}, {nombre: 'Fundacion', autor: 'Isaac Asimov'}],['perro', 'gato'])
 
-newUser.libros = [...newUser.libros,{book:"Viaje al centro de la tierra", Autor: 'Hemingway'}]  // addBook
-// console.log(newUser.libros) 
+newU.addMascota('vaca')
+newU.addBook({nombre: 'El señor de las moscas2',autor: 'William Golding2'})
+// console.log(newU.getBooks())
 
-newUser.libros.map(i=>{console.log(i.book)}) //getBooks
+
 
 
 // --------------------------- CONSTRUCTOR CLASS --------------------------- //
-
-class User {
+class Usuario {
     constructor (nombre,apellido,libros,mascotas){
         this.nombre = nombre
         this.apellido = apellido
         this.libros = libros
         this.mascotas = mascotas
     }
+    addMascota(mascota) {
+        this.mascotas.push(mascota)
+    }
+    getMascotas() {
+        return this.mascotas.length
+    }
+    addBook(libro){
+        this.libros.push(libro)
+    }
+    getBooks(){
+        return this.libros.map(i=>(i.nombre))   
+    }
+    getFullName(){
+        return this.nombre+' '+this.apellido
+    }
 }
+
+let usuario = new Usuario('Juan','Perez',[{nombre: 'El señor de las moscas',autor: 'William Golding'}, {nombre: 'Fundacion', autor: 'Isaac Asimov'}],['perro', 'gato'])
+// console.log(usuario.getBooks()) 
+
+
 
