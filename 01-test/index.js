@@ -55,7 +55,7 @@ class Usuario {
         return this.libros.map(i=>(i.nombre))   
     }
     getFullName(){
-        return this.nombre+' '+this.apellido
+        return `${this.nombre} ${this.apellido}`
     }
 }
 
